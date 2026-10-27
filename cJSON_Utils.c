@@ -1081,6 +1081,8 @@ static int apply_patches(cJSON * const object, const cJSON * const patches, cons
 
     /* All operations succeeded: commit the copy over the original,
      * keeping the caller's pointer stable. */
+    work->next = object->next;
+    work->prev = object->prev;
     overwrite_item(object, *work);
     cJSON_free(work);
     cJSON_Delete(patches_copy);
